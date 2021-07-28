@@ -1,0 +1,12 @@
+.mat-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.returned{
+background-color: green;
+}
+.active{
+    background-color: red;
+}

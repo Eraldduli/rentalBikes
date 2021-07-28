@@ -1,0 +1,237 @@
+<div class="mat-elevation-z8">
+  
+    <table mat-table [dataSource]="pageSlice">
+
+  
+      <ng-container matColumnDef="1">
+        <th mat-header-cell *matHeaderCellDef>
+          
+            <span>Filter by status</span>
+          
+        </th>
+      </ng-container>
+  
+      <ng-container matColumnDef="2">
+        <th mat-header-cell *matHeaderCellDef>
+          
+            <span>Filter by reporter</span>
+          
+        </th>
+      </ng-container>
+<!--   
+      <ng-container matColumnDef="3">
+        <th mat-header-cell *matHeaderCellDef>
+          
+            <span>Filter by type</span>
+          
+        </th>
+      </ng-container>
+  
+      <ng-container matColumnDef="4">
+        <th mat-header-cell *matHeaderCellDef>
+          
+            <span>Filter by developer</span>
+      
+        </th>
+      </ng-container> -->
+  
+  
+      <ng-container matColumnDef="FilterByType">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline">
+            <mat-select [(value)]="selected1" [formControl]="typeControl">
+  
+  
+              <mat-option value="Cross Bike">Cross Bike</mat-option>
+              <mat-option value="Tandem Bike">Tandem Bike</mat-option>
+              <mat-option value="Montain Bike">Montain Bike</mat-option>
+              <mat-option value="Road Bike">Road Bike</mat-option>
+  
+              <mat-option value="MiniVelo Bike">MiniVelo Bike</mat-option>
+              <mat-option value="City Bike">City Bike</mat-option>
+              <mat-option value="BMX Bike">BMX Bike</mat-option>
+              <mat-option value="Adult Bike">Adult Bike </mat-option>
+              
+              <mat-option value="Hybrid Bike">Hybrid Bike</mat-option>
+              <mat-option value="FOLDING BIKE "> FOLDING BIKE </mat-option>
+              
+              <mat-option value="Kids Bike  "> Kids BIKE </mat-option>
+              
+            </mat-select>
+  
+          </mat-form-field>
+        </th>
+      </ng-container>
+  
+  
+      <ng-container matColumnDef="FilterByPower">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline">
+            <mat-select [(value)]="selected2" [formControl]="power_Control">
+  
+  
+              <mat-option value="Manual">Manual</mat-option>
+              <mat-option value="Hybrid">Hybrid</mat-option>
+  
+            </mat-select>
+          </mat-form-field>
+        </th>
+      </ng-container>
+  
+<!--   
+      <ng-container matColumnDef="FilterByType">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline">
+            <mat-select [(value)]="selected3" [formControl]="typeControl">
+  
+  
+              <mat-option value="bug">Bug</mat-option>
+              <mat-option value="task">Task</mat-option>
+              <mat-option value="update">Update</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </th>
+      </ng-container>
+  
+  
+  
+      <ng-container matColumnDef="FilterByDeveloper">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-form-field appearance="outline">
+            <mat-select [(value)]="selected4" [formControl]="developerControl">
+  
+  
+  
+              <mat-option value="developer1">developer1</mat-option>
+              <mat-option value="developer2">developer2</mat-option>
+              <mat-option value="developer3">developer3</mat-option>
+              <mat-option value="developer4">developer4</mat-option>
+  
+            </mat-select>
+          </mat-form-field>
+        </th>
+      </ng-container>  -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      <ng-container matColumnDef="TypesofBike">
+        <th mat-header-cell *matHeaderCellDef> TypesofBike </th>
+        <td mat-cell *matCellDef="let element"> {{element.TypesofBike}} </td>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="Power">
+        <th mat-header-cell *matHeaderCellDef> Power </th>
+        <td mat-cell *matCellDef="let element"> {{element.Power}} </td>
+      </ng-container>
+  
+      
+       <ng-container matColumnDef="Stock">
+        <th mat-header-cell *matHeaderCellDef> Stock </th>
+        <td mat-cell *matCellDef="let element">{{element.Stock}}</td> 
+      </ng-container> 
+      
+      <ng-container matColumnDef="add">
+        <th mat-header-cell *matHeaderCellDef> Reserve </th>
+        <td mat-cell *matCellDef="let element"><button #disableButton mat-mini-fab color="primary" (click)="add(element.TypesofBike,element.Stock)"><mat-icon>plus_one</mat-icon></button>  </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="['1','2']" class="example">
+      </tr>
+      <tr mat-header-row *matHeaderRowDef="['FilterByType','FilterByPower']"
+        class="example-second-header-row">
+      </tr> 
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  
+    <mat-paginator [length]="dataSource.length" [pageSize]="3" [pageSizeOptions]="[3, 6, 11]"
+      (page)="OnPageChange($event)"></mat-paginator>
+  
+  
+  </div>
+  
+<!--   
+  <h2>
+    Click the row you want to update. <span [style.backgroundColor]="'red'">Only the author of the issue can update the
+      issue.</span>
+  </h2>
+  
+  
+  <div *ngIf="!clickedRows.size">
+    Clicked rows will be logged here
+  </div>
+  
+  
+  <div  *ngFor="let clickedRow of clickedRows">
+    <h1>
+      <form [formGroup]="form" (ngSubmit)="onSubmit(clickedRow._id)"> 
+      
+      <mat-form-field appearance="outline">ID: <mat-divider></mat-divider><input matInput [readonly]="true" type="text"   [value]="clickedRow._id" > </mat-form-field>
+      <mat-form-field appearance="outline"> STATUS:<mat-divider></mat-divider><mat-select formControlName="status" >
+          <mat-option value="reported">Reported</mat-option>
+          <mat-option value="opened">Opened</mat-option>
+          <mat-option value="in progress">In progress</mat-option>
+          <mat-option value="solved">Solved</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline"> ISSUE:<mat-divider></mat-divider><input matInput formControlName="issue" type="text"
+          [value]="clickedRow.issue"> </mat-form-field>
+      <mat-form-field appearance="outline"> TYPE:<mat-divider></mat-divider>
+        <mat-select  formControlName="type" >
+  
+  
+          <mat-option value="bug">Bug</mat-option>
+          <mat-option value="task">Task</mat-option>
+          <mat-option value="update">Update</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline"> AUTHOR<mat-divider></mat-divider><input matInput type="text" [readonly]="true"
+          [value]="clickedRow.author"> </mat-form-field>
+      <mat-form-field appearance="outline"> DEVELOPER:<mat-divider></mat-divider>   <mat-select formControlName="developer"  >
+  
+  
+  
+        <mat-option value="developer1">developer1</mat-option>
+        <mat-option value="developer2">developer2</mat-option>
+        <mat-option value="developer3">developer3</mat-option>
+        <mat-option value="developer4">developer4</mat-option>
+  
+      </mat-select></mat-form-field> -->
+      <!-- <button type="submit" mat-raised-button color="accent">Update</button>
+      </form>
+    </h1>
+  
+  </div> -->
+
+  
+  <div *ngIf="clickedRows.length !== 0" class="reserve">
+<table  id="tbl" border="1">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let el of clickedRows">
+            <td *ngIf="el">{{el.type}}</td>
+            <td *ngIf="el">{{el.number}}</td>
+            <td > <button mat-button *ngIf="el!==undefined" (click)="remove(el.type)" ><mat-icon>delete</mat-icon></button></td>
+
+        </tr>
+        <tr>&nbsp;</tr>
+        
+    </tbody>
+</table>
+<button mat-raised-button color="primary" (click)="reserve()">Reserve</button>
+</div>
