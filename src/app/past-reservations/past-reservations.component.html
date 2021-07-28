@@ -3,8 +3,7 @@
  
       <mat-card [style.backgroundColor]="'yellow'"><mat-card-content>  <mat-list-item role="listitem" >Types Of Bikes: &nbsp;{{element.type}}</mat-list-item></mat-card-content></mat-card>
       <mat-card [ngClass]="{'returned': element.rented === Returned,'active':element.rented === Active}"><mat-card-content >  <mat-list-item role="listitem" > Status: &nbsp;{{element.rented}}</mat-list-item></mat-card-content></mat-card>
-        <!-- <mat-list-item role="listitem">Type:{{element.type}}</mat-list-item>
-        <mat-list-item role="listitem">Author:{{element.author}}</mat-list-item> -->
+        
       </mat-list>
       <br><br><mat-divider></mat-divider>
       
